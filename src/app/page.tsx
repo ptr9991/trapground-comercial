@@ -1,9 +1,9 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Stats from "@/components/Stats";
-import About from "@/components/About";
 import Packages from "@/components/Packages";
 import Included from "@/components/Included";
+import Stats from "@/components/Stats";
+import About from "@/components/About";
 import Criteria from "@/components/Criteria";
 import HowItWorks from "@/components/HowItWorks";
 import FAQ from "@/components/FAQ";
@@ -17,10 +17,10 @@ export default function Home() {
       <Header />
       <main className="pb-20 md:pb-0">
         <Hero />
-        <Stats />
-        <About />
         <Packages />
         <Included />
+        <Stats />
+        <About />
         <Criteria />
         <HowItWorks />
         <FAQ />
