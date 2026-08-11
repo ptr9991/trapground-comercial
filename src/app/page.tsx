@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
 import Packages from "@/components/Packages";
+import Hero from "@/components/Hero";
 import Included from "@/components/Included";
 import Stats from "@/components/Stats";
 import About from "@/components/About";
@@ -16,8 +16,8 @@ export default function Home() {
     <>
       <Header />
       <main className="pb-20 md:pb-0">
-        <Hero />
         <Packages />
+        <Hero />
         <Included />
         <Stats />
         <About />
