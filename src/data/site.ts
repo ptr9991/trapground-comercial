@@ -19,7 +19,7 @@ export function getWhatsAppLink(packageName?: string) {
     )}`;
   }
   return `${base}?text=${encodeURIComponent(
-    `Olá! Tenho interesse no Pacote ${packageName} da TrapGround.`
+    `Olá! Tenho interesse no Pacote ${packageName} da TrapGround. Pode me passar mais detalhes?`
   )}`;
 }
 
