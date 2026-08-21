@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { CUSTOM_MIN_PRICE, estimateCustomPrice } from "@/data/packages";
+import { CUSTOM_PRICE_PER_POST, estimateCustomPrice } from "@/data/packages";
 import { getCustomWhatsAppLink } from "@/data/site";
 
 function Stepper({
@@ -51,6 +51,7 @@ export default function CustomCampaign() {
   const [sitePubs, setSitePubs] = useState(0);
   const [want, setWant] = useState("");
 
+  const totalPosts = xPosts + igCollabs + sitePubs;
   const price = useMemo(
     () => estimateCustomPrice(xPosts, igCollabs, sitePubs),
     [xPosts, igCollabs, sitePubs]
@@ -67,7 +68,7 @@ export default function CustomCampaign() {
             Monte o que você precisa
           </p>
           <p className="mt-3 text-[#a3a3a3]">
-            Sem desconto. Valor aproximado a partir de R$ {CUSTOM_MIN_PRICE}.
+            R$ {CUSTOM_PRICE_PER_POST} por post, em qualquer rede. Sem desconto.
           </p>
         </div>
 
@@ -116,7 +117,8 @@ export default function CustomCampaign() {
               R$ {price}
             </p>
             <p className="mt-2 text-sm text-[#a3a3a3]">
-              Sem desconto. Mínimo R$ {CUSTOM_MIN_PRICE}. Valor final no WhatsApp.
+              {Math.max(totalPosts, 1)} {Math.max(totalPosts, 1) === 1 ? "post" : "posts"}{" "}
+              × R$ {CUSTOM_PRICE_PER_POST}
             </p>
 
             <ul className="mt-6 space-y-2 text-sm text-[#d4d4d4]">
