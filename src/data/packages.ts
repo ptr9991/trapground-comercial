@@ -16,8 +16,8 @@ export const PACKAGES: Package[] = [
   {
     id: "start",
     name: "START",
-    price: 150,
-    priceFormatted: "R$ 150",
+    price: 200,
+    priceFormatted: "R$ 200",
     xPosts: 1,
     igCollabs: 1,
     sitePubs: 1,
@@ -27,8 +27,8 @@ export const PACKAGES: Package[] = [
   {
     id: "boost",
     name: "BOOST",
-    price: 300,
-    priceFormatted: "R$ 300",
+    price: 350,
+    priceFormatted: "R$ 350",
     xPosts: 3,
     igCollabs: 1,
     sitePubs: 1,
@@ -38,8 +38,8 @@ export const PACKAGES: Package[] = [
   {
     id: "pro",
     name: "PRO",
-    price: 500,
-    priceFormatted: "R$ 500",
+    price: 550,
+    priceFormatted: "R$ 550",
     xPosts: 5,
     igCollabs: 2,
     sitePubs: 1,
@@ -49,8 +49,8 @@ export const PACKAGES: Package[] = [
   {
     id: "domination",
     name: "DOMINATION",
-    price: 750,
-    priceFormatted: "R$ 750",
+    price: 800,
+    priceFormatted: "R$ 800",
     xPosts: 10,
     igCollabs: 3,
     sitePubs: 2,
