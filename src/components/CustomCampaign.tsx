@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { DISCOUNT_PERCENT, estimateCustomPrice } from "@/data/packages";
+import { CUSTOM_MIN_PRICE, estimateCustomPrice } from "@/data/packages";
 import { getCustomWhatsAppLink } from "@/data/site";
 
 function Stepper({
@@ -46,12 +46,12 @@ function Stepper({
 }
 
 export default function CustomCampaign() {
-  const [xPosts, setXPosts] = useState(3);
-  const [igCollabs, setIgCollabs] = useState(1);
-  const [sitePubs, setSitePubs] = useState(1);
+  const [xPosts, setXPosts] = useState(1);
+  const [igCollabs, setIgCollabs] = useState(0);
+  const [sitePubs, setSitePubs] = useState(0);
   const [want, setWant] = useState("");
 
-  const estimate = useMemo(
+  const price = useMemo(
     () => estimateCustomPrice(xPosts, igCollabs, sitePubs),
     [xPosts, igCollabs, sitePubs]
   );
@@ -67,8 +67,7 @@ export default function CustomCampaign() {
             Monte o que você precisa
           </p>
           <p className="mt-3 text-[#a3a3a3]">
-            Escolha as entregas e descreve o lançamento. O valor é aproximado,
-            já com {DISCOUNT_PERCENT}% off.
+            Sem desconto. Valor aproximado a partir de R$ {CUSTOM_MIN_PRICE}.
           </p>
         </div>
 
@@ -77,7 +76,7 @@ export default function CustomCampaign() {
             <Stepper
               label="Posts no X"
               value={xPosts}
-              min={1}
+              min={0}
               max={15}
               onChange={setXPosts}
             />
@@ -113,18 +112,17 @@ export default function CustomCampaign() {
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#7C3AED]">
               Valor aproximado
             </p>
-            <p className="mt-3 font-mono text-sm text-[#737373] line-through">
-              R$ {estimate.list}
-            </p>
-            <p className="font-mono text-4xl font-bold text-white">
-              R$ {estimate.discounted}
+            <p className="mt-3 font-mono text-4xl font-bold text-white">
+              R$ {price}
             </p>
             <p className="mt-2 text-sm text-[#a3a3a3]">
-              {DISCOUNT_PERCENT}% off aplicado. Valor final confirmado no WhatsApp.
+              Sem desconto. Mínimo R$ {CUSTOM_MIN_PRICE}. Valor final no WhatsApp.
             </p>
 
             <ul className="mt-6 space-y-2 text-sm text-[#d4d4d4]">
-              <li>{xPosts} {xPosts === 1 ? "post no X" : "posts no X"}</li>
+              <li>
+                {xPosts} {xPosts === 1 ? "post no X" : "posts no X"}
+              </li>
               <li>
                 {igCollabs}{" "}
                 {igCollabs === 1 ? "collab no Instagram" : "collabs no Instagram"}
@@ -141,7 +139,7 @@ export default function CustomCampaign() {
                 igCollabs,
                 sitePubs,
                 want,
-                price: estimate.discounted,
+                price,
               })}
               target="_blank"
               rel="noopener noreferrer"
