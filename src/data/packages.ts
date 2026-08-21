@@ -16,6 +16,7 @@ export interface Package {
 }
 
 export const CUSTOM_MIN_PRICE = 80;
+export const CUSTOM_PRICE_PER_POST = 80;
 
 export const PACKAGES: Package[] = [
   {
@@ -81,6 +82,6 @@ export function estimateCustomPrice(
   igCollabs: number,
   sitePubs: number
 ) {
-  const calculated = xPosts * 50 + igCollabs * 80 + sitePubs * 70;
-  return Math.max(calculated, CUSTOM_MIN_PRICE);
+  const totalPosts = xPosts + igCollabs + sitePubs;
+  return Math.max(totalPosts * CUSTOM_PRICE_PER_POST, CUSTOM_MIN_PRICE);
 }
