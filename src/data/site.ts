@@ -19,8 +19,31 @@ export function getWhatsAppLink(packageName?: string) {
     )}`;
   }
   return `${base}?text=${encodeURIComponent(
-    `Olá! Tenho interesse no Pacote ${packageName} da TrapGround. Pode me passar mais detalhes?`
+    `Olá! Tenho interesse no Pacote ${packageName} da TrapGround com 40% de desconto. Pode me passar mais detalhes?`
   )}`;
+}
+
+export function getCustomWhatsAppLink(params: {
+  xPosts: number;
+  igCollabs: number;
+  sitePubs: number;
+  want: string;
+  price: number;
+}) {
+  const details = params.want.trim()
+    ? params.want.trim()
+    : "(ainda não descrevi)";
+
+  const text = `Olá! Quero montar uma campanha personalizada na TrapGround.
+
+- Posts no X: ${params.xPosts}
+- Collabs no Instagram: ${params.igCollabs}
+- Publicações no site: ${params.sitePubs}
+- O que quero divulgar: ${details}
+
+Valor aproximado com 40% off: R$ ${params.price}`;
+
+  return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 
 /**
