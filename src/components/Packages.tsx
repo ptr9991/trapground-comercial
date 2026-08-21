@@ -13,8 +13,8 @@ export default function Packages() {
             Escolha sua campanha
           </p>
           <p className="mt-3 text-[#a3a3a3]">
-            40% off nos pacotes. Você escolhe, envia o material e a TrapGround
-            cuida das publicações.
+            Desconto só nos pacotes. Você escolhe, envia o material e a
+            TrapGround cuida das publicações.
           </p>
         </div>
 
@@ -81,7 +81,7 @@ export default function Packages() {
               </p>
 
               <a
-                href={getWhatsAppLink(pkg.name)}
+                href={getWhatsAppLink(pkg.name, pkg.discountPercent)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-auto block w-full rounded-md bg-[#7C3AED] py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[#8B5CF6]"
