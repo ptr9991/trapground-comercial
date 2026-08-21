@@ -5,6 +5,9 @@ export interface Package {
   name: string;
   price: number;
   priceFormatted: string;
+  originalPrice: number;
+  originalPriceFormatted: string;
+  discountPercent: number;
   xPosts: number;
   igCollabs: number;
   sitePubs: number;
@@ -12,12 +15,17 @@ export interface Package {
   description: string;
 }
 
+export const DISCOUNT_PERCENT = 40;
+
 export const PACKAGES: Package[] = [
   {
     id: "start",
     name: "START",
-    price: 200,
-    priceFormatted: "R$ 200",
+    originalPrice: 200,
+    originalPriceFormatted: "R$ 200",
+    price: 120,
+    priceFormatted: "R$ 120",
+    discountPercent: DISCOUNT_PERCENT,
     xPosts: 1,
     igCollabs: 1,
     sitePubs: 1,
@@ -27,8 +35,11 @@ export const PACKAGES: Package[] = [
   {
     id: "boost",
     name: "BOOST",
-    price: 350,
-    priceFormatted: "R$ 350",
+    originalPrice: 350,
+    originalPriceFormatted: "R$ 350",
+    price: 210,
+    priceFormatted: "R$ 210",
+    discountPercent: DISCOUNT_PERCENT,
     xPosts: 3,
     igCollabs: 1,
     sitePubs: 1,
@@ -38,8 +49,11 @@ export const PACKAGES: Package[] = [
   {
     id: "pro",
     name: "PRO",
-    price: 550,
-    priceFormatted: "R$ 550",
+    originalPrice: 550,
+    originalPriceFormatted: "R$ 550",
+    price: 330,
+    priceFormatted: "R$ 330",
+    discountPercent: DISCOUNT_PERCENT,
     xPosts: 5,
     igCollabs: 2,
     sitePubs: 1,
@@ -49,8 +63,11 @@ export const PACKAGES: Package[] = [
   {
     id: "domination",
     name: "DOMINATION",
-    price: 800,
-    priceFormatted: "R$ 800",
+    originalPrice: 800,
+    originalPriceFormatted: "R$ 800",
+    price: 480,
+    priceFormatted: "R$ 480",
+    discountPercent: DISCOUNT_PERCENT,
     xPosts: 10,
     igCollabs: 3,
     sitePubs: 2,
@@ -58,3 +75,16 @@ export const PACKAGES: Package[] = [
     description: "A opção mais completa para dominar a divulgação.",
   },
 ];
+
+export function estimateCustomPrice(
+  xPosts: number,
+  igCollabs: number,
+  sitePubs: number
+) {
+  const list = xPosts * 50 + igCollabs * 80 + sitePubs * 70;
+  const discounted = Math.round(list * (1 - DISCOUNT_PERCENT / 100));
+  return {
+    list,
+    discounted: Math.max(discounted, 0),
+  };
+}
