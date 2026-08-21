@@ -11,15 +11,19 @@ export const SITE = {
   },
 } as const;
 
-export function getWhatsAppLink(packageName?: string) {
+export function getWhatsAppLink(packageName?: string, discountPercent?: number) {
   const base = `https://wa.me/${SITE.whatsapp}`;
   if (!packageName) {
     return `${base}?text=${encodeURIComponent(
       "Olá! Quero divulgar meu lançamento com a TrapGround."
     )}`;
   }
+  const discount =
+    typeof discountPercent === "number"
+      ? ` com ${discountPercent}% de desconto`
+      : "";
   return `${base}?text=${encodeURIComponent(
-    `Olá! Tenho interesse no Pacote ${packageName} da TrapGround com 40% de desconto. Pode me passar mais detalhes?`
+    `Olá! Tenho interesse no Pacote ${packageName} da TrapGround${discount}. Pode me passar mais detalhes?`
   )}`;
 }
 
@@ -41,7 +45,7 @@ export function getCustomWhatsAppLink(params: {
 - Publicações no site: ${params.sitePubs}
 - O que quero divulgar: ${details}
 
-Valor aproximado com 40% off: R$ ${params.price}`;
+Valor aproximado: R$ ${params.price}`;
 
   return `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(text)}`;
 }
