@@ -15,7 +15,7 @@ export interface Package {
   description: string;
 }
 
-export const DISCOUNT_PERCENT = 40;
+export const CUSTOM_MIN_PRICE = 80;
 
 export const PACKAGES: Package[] = [
   {
@@ -25,7 +25,7 @@ export const PACKAGES: Package[] = [
     originalPriceFormatted: "R$ 200",
     price: 120,
     priceFormatted: "R$ 120",
-    discountPercent: DISCOUNT_PERCENT,
+    discountPercent: 40,
     xPosts: 1,
     igCollabs: 1,
     sitePubs: 1,
@@ -37,9 +37,9 @@ export const PACKAGES: Package[] = [
     name: "BOOST",
     originalPrice: 350,
     originalPriceFormatted: "R$ 350",
-    price: 210,
-    priceFormatted: "R$ 210",
-    discountPercent: DISCOUNT_PERCENT,
+    price: 245,
+    priceFormatted: "R$ 245",
+    discountPercent: 30,
     xPosts: 3,
     igCollabs: 1,
     sitePubs: 1,
@@ -51,9 +51,9 @@ export const PACKAGES: Package[] = [
     name: "PRO",
     originalPrice: 550,
     originalPriceFormatted: "R$ 550",
-    price: 330,
-    priceFormatted: "R$ 330",
-    discountPercent: DISCOUNT_PERCENT,
+    price: 440,
+    priceFormatted: "R$ 440",
+    discountPercent: 20,
     xPosts: 5,
     igCollabs: 2,
     sitePubs: 1,
@@ -65,9 +65,9 @@ export const PACKAGES: Package[] = [
     name: "DOMINATION",
     originalPrice: 800,
     originalPriceFormatted: "R$ 800",
-    price: 480,
-    priceFormatted: "R$ 480",
-    discountPercent: DISCOUNT_PERCENT,
+    price: 680,
+    priceFormatted: "R$ 680",
+    discountPercent: 15,
     xPosts: 10,
     igCollabs: 3,
     sitePubs: 2,
@@ -81,10 +81,6 @@ export function estimateCustomPrice(
   igCollabs: number,
   sitePubs: number
 ) {
-  const list = xPosts * 50 + igCollabs * 80 + sitePubs * 70;
-  const discounted = Math.round(list * (1 - DISCOUNT_PERCENT / 100));
-  return {
-    list,
-    discounted: Math.max(discounted, 0),
-  };
+  const calculated = xPosts * 50 + igCollabs * 80 + sitePubs * 70;
+  return Math.max(calculated, CUSTOM_MIN_PRICE);
 }
