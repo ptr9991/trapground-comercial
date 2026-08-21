@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Packages from "@/components/Packages";
+import CustomCampaign from "@/components/CustomCampaign";
 import Hero from "@/components/Hero";
 import Included from "@/components/Included";
 import Stats from "@/components/Stats";
@@ -17,6 +18,7 @@ export default function Home() {
       <Header />
       <main className="pb-20 md:pb-0">
         <Packages />
+        <CustomCampaign />
         <Hero />
         <Included />
         <Stats />
