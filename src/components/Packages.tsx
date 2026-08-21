@@ -13,28 +13,39 @@ export default function Packages() {
             Escolha sua campanha
           </p>
           <p className="mt-3 text-[#a3a3a3]">
-            Quatro opções claras. Você escolhe o pacote, envia o material e a
-            TrapGround cuida das publicações.
+            40% off nos pacotes. Você escolhe, envia o material e a TrapGround
+            cuida das publicações.
           </p>
         </div>
 
-        {/* Cards */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {PACKAGES.map((pkg) => (
             <article
               key={pkg.id}
               className="package-card flex flex-col rounded-lg border border-[#2e2e2e] bg-[#111111] p-5"
             >
-              <div className="mb-4">
-                <h3 className="text-lg font-bold tracking-wide text-white">
-                  {pkg.name}
-                </h3>
-                <p className="mt-1 text-xs text-[#a3a3a3]">{pkg.description}</p>
+              <div className="mb-4 flex items-start justify-between gap-3">
+                <div>
+                  <h3 className="text-lg font-bold tracking-wide text-white">
+                    {pkg.name}
+                  </h3>
+                  <p className="mt-1 text-xs text-[#a3a3a3]">
+                    {pkg.description}
+                  </p>
+                </div>
+                <span className="shrink-0 rounded-md bg-[#7C3AED] px-2 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+                  -{pkg.discountPercent}%
+                </span>
               </div>
 
-              <p className="mb-5 font-mono text-3xl font-bold text-white">
-                {pkg.priceFormatted}
-              </p>
+              <div className="mb-5">
+                <p className="font-mono text-sm text-[#737373] line-through">
+                  {pkg.originalPriceFormatted}
+                </p>
+                <p className="font-mono text-3xl font-bold text-white">
+                  {pkg.priceFormatted}
+                </p>
+              </div>
 
               <ul className="mb-6 flex-1 space-y-2.5 text-sm text-[#d4d4d4]">
                 <li className="flex items-baseline gap-2">
@@ -81,7 +92,6 @@ export default function Packages() {
           ))}
         </div>
 
-        {/* Comparison table - desktop */}
         <div className="mt-12 hidden overflow-x-auto lg:block">
           <table className="w-full min-w-[600px] border-collapse text-sm">
             <thead>
@@ -107,6 +117,9 @@ export default function Packages() {
                     key={pkg.id}
                     className="px-3 py-3 text-center font-mono font-semibold text-white"
                   >
+                    <span className="mr-2 text-[#737373] line-through">
+                      {pkg.originalPriceFormatted}
+                    </span>
                     {pkg.priceFormatted}
                   </td>
                 ))}
